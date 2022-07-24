@@ -1,0 +1,89 @@
+@use 'src/styles/mixins/index' as m;
+@use 'src/styles/constants/index' as c;
+
+$WIDTH: 460px;
+$MIN_HEIGHT: 280px;
+$BACKGROUND_COLOR: white;
+$CONTENT_COLOR: #00000073;
+$PRIMARY_COLOR: #1890ff;
+
+.wrapper {
+  @include m.fixed(0 0 0 0);
+  @include m.flexbox;
+  z-index: 9999;
+
+  &.enterDone,
+  &.exit {
+    > .alert {
+      opacity: 1;
+    }
+  }
+
+  &.enter,
+  &.exitActive {
+    > .alert {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+  }
+
+  .alert {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: $WIDTH;
+    max-width: 90vw;
+    min-height: $MIN_HEIGHT;
+    padding: 42px 38px;
+    overflow: hidden;
+    text-align: left;
+    background-color: $BACKGROUND_COLOR;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px 3px rgba(0, 0, 0, 5%);
+    transition: all 200ms;
+    transform-origin: center;
+
+    .title {
+      margin-bottom: 8px;
+      font-size: 24px;
+      line-height: 1.6;
+    }
+
+    .content {
+      font-size: 14px;
+      line-height: 1.6;
+      color: $CONTENT_COLOR;
+    }
+
+    .buttons {
+      @include m.flexbox(center, end);
+      flex: 1;
+
+      > button {
+        width: 100px;
+        height: 32px;
+        font-size: 14px;
+        border-radius: 2px;
+
+        &[aria-label='cancel'] {
+          background-color: white;
+          border: 1px solid $CONTENT_COLOR;
+        }
+
+        &[aria-label='confirm'] {
+          color: white; /* stylelint-disable-line */
+          background-color: $PRIMARY_COLOR;
+          border: unset;
+        }
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+
+      > button + button {
+        margin-left: 8px;
+      }
+    }
+  }
+}

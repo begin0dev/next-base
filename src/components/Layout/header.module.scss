@@ -1,0 +1,16 @@
+@use 'src/styles/constants/index' as c;
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: c.$S_HEADER_HEIGHT;
+  padding: 10px;
+  background-color: c.$C_HEADER;
+
+  .bellIcon {
+    width: 22px;
+    height: 22px;
+  }
+}

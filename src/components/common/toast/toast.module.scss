@@ -1,0 +1,84 @@
+$SPACE: 10px;
+$WIDTH: 300px;
+$BACKGROUND_COLOR: white;
+$FONT_SIZE: 14px;
+
+.wrapper {
+  position: fixed;
+  z-index: 9999;
+  max-height: 100%;
+
+  .toast {
+    width: $WIDTH;
+    max-width: $WIDTH;
+    padding: 10px 14px;
+    margin: $SPACE;
+    font-size: $FONT_SIZE;
+    background-color: $BACKGROUND_COLOR;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px 3px rgba(0, 0, 0, 5%);
+    transition: all 300ms;
+  }
+
+  &[class*='top-'] {
+    top: $SPACE;
+  }
+
+  &[class*='bottom-'] {
+    bottom: $SPACE;
+  }
+
+  &[class*='-left'] {
+    left: $SPACE;
+  }
+
+  &[class*='-right'] {
+    right: $SPACE;
+  }
+
+  &[class*='-center'] {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .enterDone,
+  .exit {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  .enter,
+  .exitActive {
+    opacity: 0;
+  }
+
+  &[class*='top-center'] {
+    .enter,
+    .exitActive {
+      transform: translateY(-50%);
+    }
+  }
+
+  &[class*='bottom-center'] {
+    .enter,
+    .exitActive {
+      transform: translateY(150%);
+    }
+  }
+
+  &[class*='top-left'],
+  &[class*='bottom-left'] {
+    .enter,
+    .exitActive {
+      transform: translateX(-50%);
+    }
+  }
+
+  &[class*='top-right'],
+  &[class*='bottom-right'] {
+    .enter,
+    .exitActive {
+      transform: translateX(150%);
+    }
+  }
+}
